@@ -12,12 +12,14 @@ st.title("Check safety status on the map 🗺️")
 with open("final_lat.csv", "rb") as f:
     encoding = chardet.detect(f.read())["encoding"]
 df = pd.read_csv("final_lat.csv", encoding=encoding)
-df.dropna(inplace=True)
+
 city_list = df[df['states'] == 'West bengal']['PLACE'].unique()
 
 def create_dataframe(loca):
-    
-    
+    df['latitude'] = pd.to_numeric(df['latitude'], errors='coerce')  # Convert to float, invalid values become NaN
+    df['longitude'] = pd.to_numeric(df['longitude'], errors='coerce')
+    df['intse'] = pd.to_numeric(df['intse'], errors='coerce')
+    df.dropna(subset=['latitude', 'longitude', 'intse'], inplace=True)
     lat = df[df['PLACE'] == loca]['latitude'].unique()[0]
     lng = df[df['PLACE'] == loca]['longitude'].unique()[0]
     cluster = df[df['PLACE'] == loca]['cluster'].unique()[0]
