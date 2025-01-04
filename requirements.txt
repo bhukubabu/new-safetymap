@@ -4,3 +4,4 @@ python-dotenv
 geopy
 chardet
 matplotlib
+folium
