@@ -51,7 +51,8 @@ def create_dataframe(loca):
 def user_loc(loca, map_html):
     """Display the map in Streamlit."""
     with st.expander(f"Showing results for {loca}",expanded=True):
-        components.html(map_html, height=500, width=550)
+        #components.html(map_html, height=500, width=550)
+        st_folium(crime_map, width=700)
 
 def display_crime_chart(loca):
     """Display a bar chart of crime types for the selected location."""
@@ -77,10 +78,10 @@ option = st.selectbox("Select city", city_list)
 
 if option and option != " ":
     crime_map,level = create_dataframe(option)
-    crime_map.save("crime_map.html")
+    #crime_map.save("crime_map.html")
     with open("crime_map.html", "r") as f:
         map_html = f.read()
-    user_loc(option, map_html)
+    user_loc(option, crime_map)
     if level=="low":
         st.success("You are in safe zone")
     else:
