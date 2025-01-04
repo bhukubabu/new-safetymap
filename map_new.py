@@ -47,13 +47,13 @@ def create_dataframe(loca):
     # heatmap to the map based on latitude, longitude, and intensity
     HeatMap(data=coords[['latitude', 'longitude',"intse"]].values, blur=20, radius=8,gradient=gradient,blurr=1).add_to(crime_map)
     #crime_map.save("crime_map.html")
-    return crime_map,level
+    return crime_map._repr_html_(),level
 
 def user_loc(loca, map_html):
     """Display the map in Streamlit."""
     with st.expander(f"Showing results for {loca}",expanded=True):
-        #components.html(map_html, height=500, width=550)
-        st_folium(crime_map, width=700)
+        components.html(map_html, height=500, width=550)
+        #st_folium(crime_map, width=700)
 
 def display_crime_chart(loca):
     """Display a bar chart of crime types for the selected location."""
