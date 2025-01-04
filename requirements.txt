@@ -1,4 +1,6 @@
 streamlit
 streamlit-lottie
 python-dotenv
+geopy
 chardet
+matplotlib
