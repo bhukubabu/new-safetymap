@@ -20,13 +20,14 @@ def create_dataframe(loca):
     df['longitude'] = pd.to_numeric(df['longitude'], errors='coerce')
     df['intse'] = pd.to_numeric(df['intse'], errors='coerce')
     df.dropna(subset=['latitude', 'longitude', 'intse'], inplace=True)
+    
     lat = df[df['PLACE'] == loca]['latitude'].unique()[0]
     lng = df[df['PLACE'] == loca]['longitude'].unique()[0]
     cluster = df[df['PLACE'] == loca]['cluster'].unique()[0]
     level = df[df['PLACE'] == loca]['level'].unique()[0]
     map_center = [lat, lng]
     coords = df[['latitude', 'longitude','intse']]
-
+    st.write(coords.dtypes)
     # Initialize map centered on the selected location
     crime_map = folium.Map(location=map_center, zoom_start=8, control_scale=True)
 
