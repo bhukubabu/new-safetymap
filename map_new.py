@@ -79,9 +79,9 @@ option = st.selectbox("Select city", city_list)
 
 if option and option != " ":
     crime_map,level = create_dataframe(option)
-    crime_map.save("crime_map.html")
-    with open("crime_map.html", "r") as f:
-        map_html = f.read()
+    #crime_map.save("crime_map.html")
+    #with open("crime_map.html", "r") as f:
+        #map_html = f.read()
     user_loc(option, crime_map)
     if level=="low":
         st.success("You are in safe zone")
